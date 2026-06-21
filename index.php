@@ -1,0 +1,200 @@
+<?php get_header(); ?>
+
+    <main>
+
+        <section class="top">
+            
+            <div class="top_sentence fade-item from-bottom">
+                <h1>一杯のコーヒで、<br>日常に余白を。</h1>
+                <p class="top_text">街の喧騒から少し離れた場所にある、<br>小さなコーヒースタンド。<br>自家焙煎のコーヒーと、静かな時間を<br>ご用意してお待ちしております。</p>
+                <a href="#menu">メニューを見る</a>
+            </div>
+
+            <img src="<?php echo get_template_directory_uri(); ?>/top.avif">
+
+        </section>
+
+        <section class="concept">
+
+            <div class="concept_heading heading fade-item from-bottom">
+
+                <h2>CONCEPT</h2>
+                <p>コンセプト</p>
+
+            </div>
+
+            <div class="concept_container fade-item from-bottom">
+                <img src="<?php echo get_template_directory_uri(); ?>/concept.avif">
+
+                <div class="concept_sentence">
+
+                    <h3>町の小さな止まり木</h3>
+                    <p class="concept_sentence1">忙しい毎日の中で、ふと立ち止まれる場所を作りたい。<br>そんな想いから「MORI COFFEE」は生まれました。</p>
+                    <p class="concept_sentence2">選び抜かれたスペシャルティコーヒーの香りと、<br>木の温もりを感じるミニマルな空間で、<br>あなただけの「余白」の時間をお過ごしください。</p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <section class="menu">
+
+            <div class="menu_content fade-item from-bottom">
+
+                <div class="menu_heading heading fade-item from-bottom">
+                    
+                    <h2>MENU</h2>
+                    <p>メニュー</p>
+
+                </div>
+
+                <div class="menu_container">
+
+                    <?php
+                        $args = array(
+                            'post_type' => 'menu',
+                        );
+
+                        $query = new WP_Query($args);
+                        if ($query->have_posts()) :
+                        while ($query->have_posts()) :
+                        $query->the_post();
+                    ?>
+
+                    <div class="menu_sentence">
+                        <div class="menu_image">
+                            <?php the_post_thumbnail(); ?>
+                        </div>
+                        <div class="menu_text">
+                            <h4><?php the_title(); ?></h4>
+                            <div class="menu_text_title"><?php the_field('japanesename'); ?></div>
+                            <div class="menu_text_money"><?php the_field('price'); ?></div>
+                            <div class="menu_text_description"> <?php the_content(); ?></div>   
+                        </div>
+                    </div>
+
+                    <?php
+                        endwhile;
+                        wp_reset_postdata();
+                        endif;
+                    ?>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+        <section class="feature">
+
+            <div class="feature_heading heading fade-item from-bottom">
+
+                <h2>FEATURE</h2>
+                <p>特徴</p>
+
+            </div>
+
+            <div class="feature_container fade-item from-bottom">
+
+                <div class="feature_sentence">
+                    <div class="feature_image">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-house-icon lucide-house"><path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"/><path d="M3 10a2 2 0 0 1 .709-1.528l7-6a2 2 0 0 1 2.582 0l7 6A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+                    </div>
+                    <h3>静かな空間</h3>
+                    <p>読書や考え事に最適な、落ち着いたBGMと座席配置。お一人でも気兼ねなくお過ごしいただけます。</p>
+
+                </div>
+
+                <div class="feature_sentence">
+                    <div class="feature_image">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-coffee-icon lucide-coffee"><path d="M10 2v2"/><path d="M14 2v2"/><path d="M16 8a1 1 0 0 1 1 1v8a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V9a1 1 0 0 1 1-1h14a4 4 0 1 1 0 8h-1"/><path d="M6 2v2"/></svg>
+                    </div>
+                    <h3>こだわりの豆</h3>
+                    <p>世界中から厳選されたスペシャルティコーヒー豆を使用。店内で丁寧に焙煎し、新鮮な状態でお届けします。</p>
+
+                </div>
+
+                <div class="feature_sentence">
+                    <div class="feature_image">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-map-pin-icon lucide-map-pin"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></svg>
+                    </div>
+                    <h3>駅から徒歩5分</h3>
+                    <p>街角にひっそりと佇む、通いやすいロケーション。お仕事帰りや休日のお散歩の途中にも立ち寄りやすい場所です。</p>
+
+                </div>
+            </div>
+       
+        </section>
+
+        <section class="access">
+            <div class="access_heading heading fade-item from-bottom">
+                <h2>ACCESS</h2>
+                <p class="section-subtitle">アクセス</p>
+            </div>
+            <div class="access-container fade-item from-bottom">
+
+                <div class="map-area">
+                    <iframe
+                        class="google-map"
+                        src="https://www.google.com/maps?q=東京都千代田区丸の内1-9-1&output=embed"
+                        allowfullscreen=""
+                        loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+
+                    <div class="map-card">
+                        <p class="map-text">※ダミー住所です。実際の店舗情報とは異なります。</p>
+                    </div>
+                </div>
+
+                <div class="shop-info">
+                    <h3>店舗情報</h3>
+
+                    <dl>
+                        <div class="info-row">
+                            <dt>営業時間</dt>
+                            <dd>09:00 - 19:00</dd>
+                        </div>
+
+                        <div class="info-row">
+                            <dt>定休日</dt>
+                            <dd>水曜日</dd>
+                        </div>
+
+                        <div class="info-row">
+                            <dt>住所</dt>
+                            <dd>
+                                〒000-0000<br>
+                                東京都森珈琲町1-2-3
+                            </dd>
+                        </div>
+
+                        <div class="info-row">
+                            <dt>最寄り駅</dt>
+                            <dd>JR森駅 南口より 徒歩5分</dd>
+                        </div>
+                    </dl>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <section class="contact">
+            <div class="contact_heading heading fade-item from-bottom">
+                <h2>CONTACT</h2>
+                <p class="section-subtitle">お問い合わせ</p>
+            </div>
+            <div class="contact_content fade-item from-bottom">
+                <p>お席のご予約や、豆の販売、貸切のご相談など、<br>お気軽にお問い合わせください。</p>
+                <a href="#">お問い合わせフォームへ</a>
+            </div>
+        </section>
+
+
+    </main>
+
+<?php get_footer(); ?>
